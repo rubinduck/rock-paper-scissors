@@ -42,7 +42,8 @@ function main(){
     const gameItems = Array.from(document.getElementsByClassName('game-shape'));
 
     gameItems.forEach(item =>
-        item.addEventListener('click', event => playRound(event.target.value)));
+        item.addEventListener('click',
+            event => playRound(event.currentTarget.value)));
     playAgainButton.addEventListener('click', event => startNewGame());
     startNewGame();
 
