@@ -1,0 +1,90 @@
+/* resets */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+button:focus {
+    outline: 0;
+}
+
+
+
+/* page styles */ 
+
+:root {
+    --black: rgb(27, 26, 26);
+    --grey: rgb(180, 179, 179);
+    --white: rgb(243, 243, 243);
+}
+
+html {
+    height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    height: 100%;
+    background-color: var(--grey);
+    font-family: Helvetica, sans-serif;
+}
+
+.game-information-text {
+    text-align: center;
+    font-size: 3.5rem;
+    color: var(--black);
+    user-select: none;
+}
+
+#shapes-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.button {
+    box-sizing: border-box;
+    border: 3px solid black;
+    background-color: var(--white);
+    cursor: pointer;
+}
+
+.button:focus, 
+.button:hover {
+    background-color: rgb(60, 57, 235);
+}
+
+
+.game-shape {    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 1.5rem;
+}
+
+.game-shape > img {
+    width: 50%;
+    height: 50%;
+}
+
+#play-again-button {
+    font-size: 3.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 1rem;
+}
+
+/* TODO check out if it is possible to get rid of important */
+.hidden {
+    display: none !important;
+}
