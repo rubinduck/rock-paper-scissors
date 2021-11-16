@@ -38,6 +38,7 @@ body {
 }
 
 .game-information-text {
+    text-align: center;
     font-size: 3.5rem;
     color: var(--black);
     user-select: none;
@@ -45,7 +46,9 @@ body {
 
 #shapes-container {
     display: flex;
+    justify-content: center;
     gap: 2rem;
+    flex-wrap: wrap;
 }
 
 .button {
