@@ -6,7 +6,7 @@ function hasPlayerWon(humanMove){
     return compareMoves(humanMove, machineMove) === 1;
 }
 
-const getRandomMove = () =>
+const genRandomMove = () =>
     MOVES[randomInRange(0, MOVES.length)];
 
 // returns random number including min, not including max
