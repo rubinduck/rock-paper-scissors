@@ -37,7 +37,7 @@ body {
     font-family: Helvetica, sans-serif;
 }
 
-#game-invitation {
+.game-information-text {
     font-size: 3.5rem;
     color: var(--black);
     user-select: none;
@@ -73,14 +73,6 @@ body {
 .game-shape > img {
     width: 50%;
     height: 50%;
-}
-
-
-#win-message,
-#loss-message {
-    font-size: 3.5rem;
-    color: var(--black);
-    user-select: none;
 }
 
 #play-again-button {
