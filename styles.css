@@ -68,7 +68,11 @@ body {
     width: 200px;
     height: 200px;
     border-radius: 1.5rem;
-    font-size: 100px;
+}
+
+.game-shape > img {
+    width: 50%;
+    height: 50%;
 }
 
 
