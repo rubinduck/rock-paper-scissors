@@ -1,2 +1,3 @@
 # rock-paper-scissors
-Rock paper scissors browser game
+Rock Paper Scissors browser game
+![Site screen](./res/1.png)
