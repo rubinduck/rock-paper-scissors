@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Rock Paper Scissors</title>
+    <link rel='stylesheet' href='./styles.css'>
     <script src="./script.js"></script>
 </head>
 <body>
-    
+    <span id='game-invitation'>Choose your weapon</span>
+    <div id='shapes-container'>
+        <button class='button game-shape' tabindex='0'>✂️</button>
+        <button class='button game-shape'>📃</button>
+        <button class='button game-shape'>🪨</button>
+    </div>
+
+    <span id='win-message'>You won 🎉</span>
+    <span id='loss-message'>You lost 🙁</span>
+    <button class='button' id='try-again-button'>Try again</button>
 </body>
 </html>
