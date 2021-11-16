@@ -1,9 +1,9 @@
 'use strict'
 const MOVES = ['Rock', 'Paper', 'Scissors'];
 
-function hasPlayerWon(humanMove){
+function hasPlayerWon(playerMove){
     const machineMove = genRandomMove();
-    return compareMoves(humanMove, machineMove) === 1;
+    return compareMoves(playerMove, machineMove) === 1;
 }
 
 const genRandomMove = () =>
