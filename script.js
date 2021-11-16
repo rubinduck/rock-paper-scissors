@@ -8,8 +8,8 @@ function hasPlayerWon(humanMove){
 
 // returns 0 for equal, 1 for move1 > move2 and -1 for move1 < move2
 function compareMoves(move1, move2){
-    if (!MOVES.includes(move1)) throw new Exception(`${move1} is not correct move`);
-    if (!MOVES.includes(move2)) throw new Exception(`${move2} is not correct move`);
+    if (!MOVES.includes(move1)) throw new Error(`${move1} is not correct move`);
+    if (!MOVES.includes(move2)) throw new Error(`${move2} is not correct move`);
     if (move1 === move2)
         return 0;
     switch (move1) {
