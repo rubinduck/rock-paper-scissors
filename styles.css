@@ -84,3 +84,8 @@ body {
     padding: 0.5rem 0.75rem;
     border-radius: 1rem;
 }
+
+/* TODO check out if it is possible to get rid of important */
+.hidden {
+    display: none !important;
+}
