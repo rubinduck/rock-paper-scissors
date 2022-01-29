@@ -88,3 +88,14 @@ body {
 .hidden {
     display: none !important;
 }
+
+
+#scores-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.score {
+    text-align: center;
+    font-size: 2rem;
+}
