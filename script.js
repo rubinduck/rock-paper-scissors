@@ -4,22 +4,14 @@ const playerNumbers = ['First', 'Second'];
 const roundResults = ['first-won', 'second-won', 'draw', 'erorr'];
 const WIN_SCORE = 5;
 
-class Player {
-    playerNumber;
-    score;
-    constructor(playerNumber, score=0){
-        this.playerNumber = playerNumber;
-        this.score = score;
-    }
-}
 
 class RockPaperScissorsGame {
-    player1 = new Player('First');
-    player2 = new Player('Second');
+    player1Score = 0;
+    player2Score = 0;
 
     startNewGame(){
-        this.player1 = new Player('First');
-        this.player2 = new Player('Second');
+        this.player1Score = 0;
+        this.player2Score = 0;
     }
 
     //returns winner player number or null if something is wrong
@@ -30,11 +22,11 @@ class RockPaperScissorsGame {
             return 'error';
         const compareResult = this.compareMoves(player1Shape, player2Shape);
         if (compareResult === 1){
-            this.player1.score++;
+            this.player1Score++;
             return 'first-won';
         }
         else if (compareResult === -1){
-            this.player2.score++;
+            this.player2Score++;
             return 'second-won';
         }
         return 'draw';
@@ -58,9 +50,9 @@ class RockPaperScissorsGame {
 
     // if there is winner returns its number otherwise null
     maybeGetWinner(){
-        if (this.player1.score === WIN_SCORE)
+        if (this.player1Score === WIN_SCORE)
             return 'First';
-        if (this.player2.score === WIN_SCORE)
+        if (this.player2Score === WIN_SCORE)
             return 'Second';
         return null;
     }
@@ -142,8 +134,8 @@ function main(){
     }
 
     function updateScore(gameObject, scoreElement1, scoreElement2){
-        scoreElement1.textContent = gameObject.player1.score;
-        scoreElement2.textContent = gameObject.player2.score;
+        scoreElement1.textContent = gameObject.player1Score;
+        scoreElement2.textContent = gameObject.player2Score;
     }
 
     function hide(...elements){
