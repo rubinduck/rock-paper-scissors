@@ -14,7 +14,8 @@ class RockPaperScissorsGame {
         this.player2Score = 0;
     }
 
-    //returns winner player number or null if something is wrong
+    //returns string from roundResults
+    //Can be: 'first-won', 'second-won', 'draw', 'erorr'
     playRound(player1Shape, player2Shape){
         if (this.maybeGetWinner() !== null)
             return 'error';
