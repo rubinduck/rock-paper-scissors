@@ -7,32 +7,33 @@
     <script defer src='./script.js'></script>
 </head>
 <body>
-    <div id='scores-container'>
+    <div id='scoreboard'>
         <div class='score'>
-            <div id='player-score-counter'>0</div>
-            Player score
+            <div id='human-score-counter'>0</div>
+            Your score
         </div>
         <div class='score'>
             <div id='bot-score-counter'>0</div>
             Bot score
         </div>
     </div>
-    <!-- TODO add win loss counter -->
     <span class='game-information-text' id='game-invitation'>Choose your weapon</span>
     <div id='shapes-container'>
-        <button class='button game-shape' value='Scissors'>
+        <button class='button game-shape' value='scissors'>
             <img src='./img/scissors.png' alt='scissors emoji'>
         </button>
-        <button class='button game-shape' value='Paper'>
+        <button class='button game-shape' value='paper'>
             <img src='./img/paper.png' alt='paper emoji'>
         </button>
-        <button class='button game-shape' value='Rock'>
+        <button class='button game-shape' value='rock'>
             <img src='./img/rock.png' alt='rock emoji'>
         </button>
     </div>
 
-    <span class='game-information-text' id='win-message'>You won 🎉</span>
-    <span class='game-information-text' id='loss-message'>You lost 🙁</span>
+    <span class='game-information-text' id='round-result-message'>
+        Bot choosed rock<br>
+        You Won this round
+    </span>
     <button class='button' id='play-again-button'>Play again</button>
 </body>
 </html>

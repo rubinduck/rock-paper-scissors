@@ -1,75 +1,157 @@
 'use strict'
-const MOVES = ['Rock', 'Paper', 'Scissors'];
+const shapes = ['rock', 'paper', 'scissors'];
+const playerNumbers = ['First', 'Second'];
+const roundResults = ['first-won', 'second-won', 'draw', 'erorr'];
+const WIN_SCORE = 5;
 
-function hasPlayerWon(playerMove){
-    const machineMove = genRandomMove();
-    return compareMoves(playerMove, machineMove) === 1;
+class Player {
+    playerNumber;
+    score;
+    constructor(playerNumber, score=0){
+        this.playerNumber = playerNumber;
+        this.score = score;
+    }
 }
 
-const genRandomMove = () =>
-    MOVES[randomInRange(0, MOVES.length)];
+class RockPaperScissorsGame {
+    player1 = new Player('First');
+    player2 = new Player('Second');
+
+    startNewGame(){
+        this.player1 = new Player('First');
+        this.player2 = new Player('Second');
+    }
+
+    //returns winner player number or null if something is wrong
+    playRound(player1Shape, player2Shape){
+        if (this.maybeGetWinner() !== null)
+            return 'error';
+        if (!shapes.includes(player1Shape) || !shapes.includes(player2Shape))
+            return 'error';
+        const compareResult = this.compareMoves(player1Shape, player2Shape);
+        if (compareResult === 1){
+            this.player1.score++;
+            return 'first-won';
+        }
+        else if (compareResult === -1){
+            this.player2.score++;
+            return 'second-won';
+        }
+        return 'draw';
+    }
+    
+    // returns 0 for equal, 1 for move1 > move2 and -1 for move1 < move2
+    compareMoves(move1, move2){
+        if (!shapes.includes(move1)) throw new Error(`${move1} is not correct move`);
+        if (!shapes.includes(move2)) throw new Error(`${move2} is not correct move`);
+        if (move1 === move2)
+            return 0;
+        switch (move1){
+            case 'rock':
+                return move2 === 'scissors' ? 1 : -1;
+            case 'paper':
+                return move2 === 'rock' ? 1 : -1;
+            case 'scissors':
+                return move2 === 'paper' ? 1 : -1;
+        }
+    }
+
+    // if there is winner returns its number otherwise null
+    maybeGetWinner(){
+        if (this.player1.score === WIN_SCORE)
+            return 'First';
+        if (this.player2.score === WIN_SCORE)
+            return 'Second';
+        return null;
+    }
+}
+
+const genRandomShape = () =>
+    chooseRandomItem(shapes);
+
+const chooseRandomItem = (list) => {
+    if (list.length === 0) throw new Error('Cant choose item from empty list');
+    return list[randomInRange(0, list.length)];
+}
 
 // returns random number including min, not including max
 const randomInRange = (min, max) =>
     Math.floor(Math.random() * (max - min) + min);
 
-// returns 0 for equal, 1 for move1 > move2 and -1 for move1 < move2
-function compareMoves(move1, move2){
-    if (!MOVES.includes(move1)) throw new Error(`${move1} is not correct move`);
-    if (!MOVES.includes(move2)) throw new Error(`${move2} is not correct move`);
-    if (move1 === move2)
-        return 0;
-    switch (move1) {
-        case 'Rock':
-            return move2 === 'Scissors' ? 1 : -1;
-        case 'Paper':
-            return move2 === 'Rock' ? 1 : -1;
-        case 'Scissors':
-            return move2 === 'Paper' ? 1 : -1;
-    }
-}
-
-
-
 function main(){
+    const gameObject = new RockPaperScissorsGame();
     const gameInvitation = document.getElementById('game-invitation');
     const shapesContainer = document.getElementById('shapes-container');
-    const winMessage = document.getElementById('win-message');
-    const lossMessage = document.getElementById('loss-message');
+    const roundResultElement = document.getElementById('round-result-message');
     const playAgainButton = document.getElementById('play-again-button');
     const gameItems = Array.from(document.getElementsByClassName('game-shape'));
+    const scoreboard = document.getElementById('scoreboard');
+    const humanScoreElement = document.getElementById('human-score-counter');
+    const botScoreElement = document.getElementById('bot-score-counter');
 
     gameItems.forEach(item =>
-        item.addEventListener('click',
-            event => playRound(event.currentTarget.value)));
-    playAgainButton.addEventListener('click', event => startNewGame());
+        item.addEventListener('click', event => handleHumanInput(event.currentTarget.value)));
+    playAgainButton.addEventListener('click', startNewGame);
     startNewGame();
 
-    function startNewGame(){
-        show(gameInvitation);
-        show(shapesContainer);
-        hide(winMessage);
-        hide(lossMessage);
-        hide(playAgainButton);
+    function startNewGame(event){
+        gameObject.startNewGame();
+        show(scoreboard, 
+             gameInvitation,
+             shapesContainer);
+        hide(roundResultElement,
+             playAgainButton);
     }
 
-    function playRound(playersItem){
-        const playerWon = hasPlayerWon(playersItem);
-        hide(gameInvitation);
-        hide(shapesContainer);
-        if (playerWon)
-            show(winMessage);
-        else
-            show(lossMessage);
-        show(playAgainButton)
+    function handleHumanInput(humansShape){
+        const botsShape = genRandomShape();
+        const roundResult = gameObject.playRound(humansShape, botsShape);
+        if (roundResult === 'error') throw new Error('Round was not ok. Maybe invalid input');
+        // const humanWon = gameObject.maybeGetWinner() === 'First';
+        displayRoundResult(botsShape, roundResult)
     };
 
-    function hide(element){
-        element.classList.add('hidden');
+    function displayRoundResult(botsShape, roundResult){
+        if (gameObject.maybeGetWinner() !== null){
+            displayGameFinalResult(gameObject.maybeGetWinner());
+            return;
+        }
+        let message = `Bot choosed ${botsShape}\n`;
+        switch (roundResult) {
+            case 'first-won':
+                message += 'You won this round';
+                break;
+            case 'second-won':
+                message += 'You lost this round';
+                break;
+            default:
+                message += 'Draw';
+        }
+        roundResultElement.textContent = message;
+        show(roundResultElement);
+        updateScore(gameObject, humanScoreElement, botScoreElement);
     }
 
-    function show(element){
-        element.classList.remove('hidden')
+    function displayGameFinalResult(winner){
+        const message = (winner === 'First')
+        ? 'You won 🎉'
+        : 'You lost 🙁';
+        roundResultElement.textContent = message;
+        hide(gameInvitation, shapesContainer, scoreboard);
+        show(roundResultElement);
+    }
+
+    function updateScore(gameObject, scoreElement1, scoreElement2){
+        scoreElement1.textContent = gameObject.player1.score;
+        scoreElement2.textContent = gameObject.player2.score;
+    }
+
+    function hide(...elements){
+        elements.forEach(element => element.classList.add('hidden'));
+    }
+
+    function show(...elements){
+        elements.forEach(element => element.classList.remove('hidden'));
     }
 }
 

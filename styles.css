@@ -42,6 +42,7 @@ body {
     font-size: 3.5rem;
     color: var(--black);
     user-select: none;
+    white-space: pre;
 }
 
 #shapes-container {
@@ -88,9 +89,8 @@ body {
 .hidden {
     display: none !important;
 }
-
-
-#scores-container {
+/* TODO check problem with shape selection staying */
+#scoreboard {
     display: flex;
     gap: 2rem;
 }
