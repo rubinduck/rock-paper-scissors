@@ -57,19 +57,11 @@ class RockPaperScissorsGame {
             return 'Second';
         return null;
     }
+
+    static genRandomShape = () =>
+        chooseRandomItem(shapes);
 }
 
-const genRandomShape = () =>
-    chooseRandomItem(shapes);
-
-const chooseRandomItem = (list) => {
-    if (list.length === 0) throw new Error('Cant choose item from empty list');
-    return list[randomInt(0, list.length)];
-}
-
-// returns random number including min, not including max
-const randomInt = (min, max) =>
-    Math.floor(Math.random() * (max - min) + min);
 
 function main(){
     const gameObject = new RockPaperScissorsGame();
@@ -101,7 +93,7 @@ function main(){
 
     function handleShapeChoose(event){
         const humansShape =  event.currentTarget.dataset.shape;
-        const botsShape = genRandomShape();
+        const botsShape = RockPaperScissorsGame.genRandomShape();
         const roundResult = gameObject.playRound(humansShape, botsShape);
         if (roundResult === 'error') throw new Error('Round was not ok. Maybe invalid input');
         // const humanWon = gameObject.maybeGetWinner() === 'First';
@@ -169,5 +161,14 @@ function removeActiveEffect(event){
 function isSpaceOrEnter(key){
     return key === ' ' || key === 'Enter';
 }
+
+const chooseRandomItem = (list) => {
+    if (list.length === 0) throw new Error('Cant choose item from empty list');
+    return list[randomInt(0, list.length)];
+}
+
+// returns random number including min, not including max
+const randomInt = (min, max) =>
+    Math.floor(Math.random() * (max - min) + min);
 
 main()
