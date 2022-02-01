@@ -86,7 +86,7 @@ function main(){
         button.addEventListener('keyup', removeActiveEffect);});
 
     const shapeElements = document.querySelectorAll('.shape');
-    shapeElements.forEach(shape => shape.addEventListener('click', handleHumanInput));
+    shapeElements.forEach(shape => shape.addEventListener('click', handleShapeChoose));
     playAgainButton.addEventListener('click', startNewGame);
 
     startNewGame();
@@ -99,7 +99,7 @@ function main(){
         updateScore(gameObject);
     }
 
-    function handleHumanInput(event){
+    function handleShapeChoose(event){
         const humansShape =  event.currentTarget.dataset.shape;
         const botsShape = genRandomShape();
         const roundResult = gameObject.playRound(humansShape, botsShape);
