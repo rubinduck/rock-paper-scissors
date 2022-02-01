@@ -131,7 +131,7 @@ function main(){
         : 'You lost 🙁';
         roundResultElement.textContent = message;
         hide(gameInvitation, shapesContainer, scoreboard);
-        show(roundResultElement);
+        show(roundResultElement, playAgainButton);
     }
 
     function updateScore(gameObject, scoreElement1, scoreElement2){
