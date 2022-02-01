@@ -21,7 +21,7 @@ class RockPaperScissorsGame {
             return 'error';
         if (!shapes.includes(player1Shape) || !shapes.includes(player2Shape))
             return 'error';
-        const compareResult = this.compareMoves(player1Shape, player2Shape);
+        const compareResult = this.compareShapes(player1Shape, player2Shape);
         if (compareResult === 1){
             this.player1Score++;
             return 'first-won';
@@ -33,19 +33,19 @@ class RockPaperScissorsGame {
         return 'draw';
     }
     
-    // returns 0 for equal, 1 for move1 > move2 and -1 for move1 < move2
-    compareMoves(move1, move2){
-        if (!shapes.includes(move1)) throw new Error(`${move1} is not correct move`);
-        if (!shapes.includes(move2)) throw new Error(`${move2} is not correct move`);
-        if (move1 === move2)
+    // returns 0 for equal, 1 for shape1 > shape2 and -1 for shape1 < shape2
+    compareShapes(shape1, shape2){
+        if (!shapes.includes(shape1)) throw new Error(`${shape1} is not correct shape`);
+        if (!shapes.includes(shape2)) throw new Error(`${shape2} is not correct shape`);
+        if (shape1 === shape2)
             return 0;
-        switch (move1){
+        switch (shape1){
             case 'rock':
-                return move2 === 'scissors' ? 1 : -1;
+                return shape2 === 'scissors' ? 1 : -1;
             case 'paper':
-                return move2 === 'rock' ? 1 : -1;
+                return shape2 === 'rock' ? 1 : -1;
             case 'scissors':
-                return move2 === 'paper' ? 1 : -1;
+                return shape2 === 'paper' ? 1 : -1;
         }
     }
 
