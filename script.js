@@ -64,11 +64,11 @@ const genRandomShape = () =>
 
 const chooseRandomItem = (list) => {
     if (list.length === 0) throw new Error('Cant choose item from empty list');
-    return list[randomInRange(0, list.length)];
+    return list[randomInt(0, list.length)];
 }
 
 // returns random number including min, not including max
-const randomInRange = (min, max) =>
+const randomInt = (min, max) =>
     Math.floor(Math.random() * (max - min) + min);
 
 function main(){
