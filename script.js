@@ -81,9 +81,15 @@ function main(){
     const humanScoreElement = document.getElementById('human-score-counter');
     const botScoreElement = document.getElementById('bot-score-counter');
 
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+        button.addEventListener('keydown', addActiveEffect);
+        button.addEventListener('keyup', removeActiveEffect);});
+
     gameItems.forEach(item =>
         item.addEventListener('click', event => handleHumanInput(event.currentTarget.value)));
     playAgainButton.addEventListener('click', startNewGame);
+
     startNewGame();
 
     function startNewGame(event){
@@ -143,6 +149,20 @@ function main(){
 
     function show(...elements){
         elements.forEach(element => element.classList.remove('hidden'));
+    }
+
+    function addActiveEffect(event){
+        if (!isSpaceOrEnter(event.key)) return;
+        event.currentTarget.classList.add('active');
+    }
+
+    function removeActiveEffect(event){
+        if (!isSpaceOrEnter(event.key)) return;
+        event.currentTarget.classList.remove('active');
+    }
+
+    function isSpaceOrEnter(key){
+        return key === ' ' || key === 'Enter';
     }
 }
 

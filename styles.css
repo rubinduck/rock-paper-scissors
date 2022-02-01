@@ -71,6 +71,10 @@ body {
     transform: scale(1.05);
 }
 
+.active {
+    transform: scale(1.05);
+}
+
 .game-shape {    
     display: flex;
     justify-content: center;
