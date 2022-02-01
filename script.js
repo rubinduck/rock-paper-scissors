@@ -74,7 +74,7 @@ const randomInt = (min, max) =>
 function main(){
     const gameObject = new RockPaperScissorsGame();
     const shapesContainer = document.getElementById('shapes-container');
-    const roundResultElement = document.getElementById('round-result-message');
+    const messageElement = document.getElementById('game-text-message');
     const playAgainButton = document.getElementById('play-again-button');
     const shapeElements = document.querySelectorAll('.shape');
     const scoreboard = document.getElementById('scoreboard');
@@ -93,10 +93,10 @@ function main(){
 
     function startNewGame(event){
         gameObject.startNewGame();
-        show(scoreboard, 
-             shapesContainer);
-        hide(roundResultElement,
-             playAgainButton);
+        showMessageElement('Choose your weapon')
+        show(scoreboard, shapesContainer);
+        hide(playAgainButton);
+        updateScore(gameObject);
     }
 
     function handleHumanInput(event){
@@ -113,29 +113,33 @@ function main(){
             displayGameFinalResult(gameObject.maybeGetWinner());
             return;
         }
-        let message = `Bot choosed ${botsShape}. `;
+        let text = `Bot choosed ${botsShape}. `;
         switch (roundResult) {
             case 'first-won':
-                message += 'You won this round';
+                text += 'You won this round';
                 break;
             case 'second-won':
-                message += 'You lost this round';
+                text += 'You lost this round';
                 break;
             default:
-                message += 'Draw';
+                text += 'Draw';
         }
-        roundResultElement.textContent = message;
-        show(roundResultElement);
+        showMessageElement(text);
         updateScore(gameObject, humanScoreElement, botScoreElement);
     }
 
     function displayGameFinalResult(winner){
-        const message = (winner === 'First')
+        const text = (winner === 'First')
         ? 'You won 🎉'
         : 'You lost 🙁';
-        roundResultElement.textContent = message;
+        showMessageElement(text);
+        show(playAgainButton);
         hide(shapesContainer, scoreboard);
-        show(roundResultElement, playAgainButton);
+    }
+
+    function showMessageElement(text){
+        messageElement.textContent = text;
+        show(messageElement);
     }
 
     function updateScore(gameObject){
