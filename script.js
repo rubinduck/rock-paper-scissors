@@ -73,7 +73,6 @@ const randomInRange = (min, max) =>
 
 function main(){
     const gameObject = new RockPaperScissorsGame();
-    const gameInvitation = document.getElementById('game-invitation');
     const shapesContainer = document.getElementById('shapes-container');
     const roundResultElement = document.getElementById('round-result-message');
     const playAgainButton = document.getElementById('play-again-button');
@@ -90,7 +89,6 @@ function main(){
     function startNewGame(event){
         gameObject.startNewGame();
         show(scoreboard, 
-             gameInvitation,
              shapesContainer);
         hide(roundResultElement,
              playAgainButton);
@@ -130,7 +128,7 @@ function main(){
         ? 'You won 🎉'
         : 'You lost 🙁';
         roundResultElement.textContent = message;
-        hide(gameInvitation, shapesContainer, scoreboard);
+        hide(shapesContainer, scoreboard);
         show(roundResultElement, playAgainButton);
     }
 
