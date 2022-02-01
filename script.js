@@ -138,32 +138,32 @@ function main(){
         show(roundResultElement, playAgainButton);
     }
 
-    function updateScore(gameObject, scoreElement1, scoreElement2){
-        scoreElement1.textContent = gameObject.player1Score;
-        scoreElement2.textContent = gameObject.player2Score;
+    function updateScore(gameObject){
+        humanScoreElement.textContent = gameObject.player1Score;
+        botScoreElement.textContent = gameObject.player2Score;
     }
+}
 
-    function hide(...elements){
-        elements.forEach(element => element.classList.add('hidden'));
-    }
+function hide(...elements){
+    elements.forEach(element => element.classList.add('hidden'));
+}
 
-    function show(...elements){
-        elements.forEach(element => element.classList.remove('hidden'));
-    }
+function show(...elements){
+    elements.forEach(element => element.classList.remove('hidden'));
+}
 
-    function addActiveEffect(event){
-        if (!isSpaceOrEnter(event.key)) return;
-        event.currentTarget.classList.add('active');
-    }
+function addActiveEffect(event){
+    if (!isSpaceOrEnter(event.key)) return;
+    event.currentTarget.classList.add('active');
+}
 
-    function removeActiveEffect(event){
-        if (!isSpaceOrEnter(event.key)) return;
-        event.currentTarget.classList.remove('active');
-    }
+function removeActiveEffect(event){
+    if (!isSpaceOrEnter(event.key)) return;
+    event.currentTarget.classList.remove('active');
+}
 
-    function isSpaceOrEnter(key){
-        return key === ' ' || key === 'Enter';
-    }
+function isSpaceOrEnter(key){
+    return key === ' ' || key === 'Enter';
 }
 
 main()
