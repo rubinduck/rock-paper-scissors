@@ -113,7 +113,7 @@ function main(){
             displayGameFinalResult(gameObject.maybeGetWinner());
             return;
         }
-        let message = `Bot choosed ${botsShape}\n`;
+        let message = `Bot choosed ${botsShape}. `;
         switch (roundResult) {
             case 'first-won':
                 message += 'You won this round';
