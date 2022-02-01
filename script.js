@@ -73,19 +73,19 @@ const randomInt = (min, max) =>
 
 function main(){
     const gameObject = new RockPaperScissorsGame();
-    const shapesContainer = document.getElementById('shapes-container');
-    const messageElement = document.getElementById('game-text-message');
-    const playAgainButton = document.getElementById('play-again-button');
-    const shapeElements = document.querySelectorAll('.shape');
     const scoreboard = document.getElementById('scoreboard');
     const humanScoreElement = document.getElementById('human-score-counter');
     const botScoreElement = document.getElementById('bot-score-counter');
+    const messageElement = document.getElementById('game-text-message');
+    const shapesContainer = document.getElementById('shapes-container');
+    const playAgainButton = document.getElementById('play-again-button');
 
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => {
         button.addEventListener('keydown', addActiveEffect);
         button.addEventListener('keyup', removeActiveEffect);});
 
+    const shapeElements = document.querySelectorAll('.shape');
     shapeElements.forEach(shape => shape.addEventListener('click', handleHumanInput));
     playAgainButton.addEventListener('click', startNewGame);
 
