@@ -62,7 +62,7 @@ class RockPaperScissorsGame {
         chooseRandomItem(shapes);
 }
 
-
+// TODO add shape selection with keyboard arrows
 function main(){
     const gameObject = new RockPaperScissorsGame();
     const scoreboard = document.getElementById('scoreboard');
