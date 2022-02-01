@@ -98,6 +98,8 @@ body {
 }
 
 #scoreboard {
+    position: fixed;
+    top: 10%;
     display: flex;
     gap: 2rem;
 }
