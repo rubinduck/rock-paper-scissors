@@ -2,10 +2,10 @@
 const shapes = ['rock', 'paper', 'scissors'];
 const playerNumbers = ['First', 'Second'];
 const roundResults = ['first-won', 'second-won', 'draw', 'erorr'];
-const WIN_SCORE = 5;
 
 
 class RockPaperScissorsGame {
+    static WIN_SCORE = 5;
     player1Score = 0;
     player2Score = 0;
 
@@ -51,9 +51,9 @@ class RockPaperScissorsGame {
 
     // if there is winner returns its number otherwise null
     maybeGetWinner(){
-        if (this.player1Score === WIN_SCORE)
+        if (this.player1Score === RockPaperScissorsGame.WIN_SCORE)
             return 'First';
-        if (this.player2Score === WIN_SCORE)
+        if (this.player2Score === RockPaperScissorsGame.WIN_SCORE)
             return 'Second';
         return null;
     }
