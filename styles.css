@@ -75,7 +75,7 @@ body {
     transform: scale(1.05);
 }
 
-.game-shape {    
+.shape {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -84,7 +84,7 @@ body {
     border-radius: 1.5rem;
 }
 
-.game-shape > img {
+.shape > img {
     width: 50%;
     height: 50%;
 }

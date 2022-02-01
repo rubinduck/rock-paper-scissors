@@ -76,7 +76,7 @@ function main(){
     const shapesContainer = document.getElementById('shapes-container');
     const roundResultElement = document.getElementById('round-result-message');
     const playAgainButton = document.getElementById('play-again-button');
-    const gameItems = Array.from(document.getElementsByClassName('game-shape'));
+    const shapeElements = document.querySelectorAll('.shape');
     const scoreboard = document.getElementById('scoreboard');
     const humanScoreElement = document.getElementById('human-score-counter');
     const botScoreElement = document.getElementById('bot-score-counter');
@@ -86,8 +86,7 @@ function main(){
         button.addEventListener('keydown', addActiveEffect);
         button.addEventListener('keyup', removeActiveEffect);});
 
-    gameItems.forEach(item =>
-        item.addEventListener('click', event => handleHumanInput(event.currentTarget.value)));
+    shapeElements.forEach(shape => shape.addEventListener('click', handleHumanInput));
     playAgainButton.addEventListener('click', startNewGame);
 
     startNewGame();
@@ -100,7 +99,8 @@ function main(){
              playAgainButton);
     }
 
-    function handleHumanInput(humansShape){
+    function handleHumanInput(event){
+        const humansShape =  event.currentTarget.dataset.shape;
         const botsShape = genRandomShape();
         const roundResult = gameObject.playRound(humansShape, botsShape);
         if (roundResult === 'error') throw new Error('Round was not ok. Maybe invalid input');
